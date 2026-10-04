@@ -7,5 +7,10 @@ app.use(bodyParser());
 
 require('./app/routes.js')(app);
 
-app.listen(port);
-console.log('Application server is up and running on port: ' + port);
+// Listen only when run directly (npm start); Vercel imports the exported app instead.
+if (require.main === module) {
+  app.listen(port);
+  console.log('Application server is up and running on port: ' + port);
+}
+
+module.exports = app;
